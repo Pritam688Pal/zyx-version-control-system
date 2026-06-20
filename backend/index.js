@@ -30,7 +30,12 @@ yargs(hideBin(process.argv))
     .command(
     "commit",
     "Commit the staged files",
-    {},
+    ( yargs ) => {
+        yargs.positional("file", {
+            describe: "Commit message",
+            type: "string"
+        })
+    },
     commitFiles,
     )
     .command(
@@ -48,7 +53,12 @@ yargs(hideBin(process.argv))
     .command(
     "revert",
     "Revert to a specific commit",
-    {},
+    ( yargs ) => {
+        yargs.positional("file", {
+            describe: "Comit ID to revert back to",
+            type: "string"
+        })
+    },
     revert,
     )
     .demandCommand(1, "You need at least one command")
