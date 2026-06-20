@@ -17,7 +17,7 @@ yargs(hideBin(process.argv))
     initRepo,
     )
     .command(
-    "add",
+    "add <file>",
     "Add a file to the repository",
     ( yargs ) => {
         yargs.positional("file", {
@@ -25,7 +25,9 @@ yargs(hideBin(process.argv))
             type: "string"
         })
     },
-    addFiles,
+    (argv) => {
+        addFiles(argv.file);
+    }
     )
     .command(
     "commit",

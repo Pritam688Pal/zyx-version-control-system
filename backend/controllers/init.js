@@ -1,6 +1,5 @@
 const fs = require("fs").promises;
 const path = require("path");
-const { json } = require("stream/consumers");
 
 async function initRepo(params) {
   const repoPath = path.resolve(process.cwd(), ".ZYXgit");
