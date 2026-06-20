@@ -1,0 +1,15 @@
+{
+  "name": "zyx-version-control-system",
+  "version": "1.0.0",
+  "description": "",
+  "license": "ISC",
+  "author": "Pritam Pal",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "yargs": "^18.0.0"
+  }
+}
