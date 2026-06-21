@@ -1,12 +1,12 @@
 const AWS = require("aws-sdk");
 require("dotenv").config();
 
-console.log("ACCESS_KEY:", process.env.AWS_ACCESS_KEY_ID);
-console.log(
-	"SECRET_KEY:",
-	process.env.AWS_SECRET_ACCESS_KEY ? "FOUND" : "MISSING",
-);
-console.log("REGION:", process.env.AWS_REGION);
+// console.log("ACCESS_KEY:", process.env.AWS_ACCESS_KEY_ID);
+// console.log(
+// 	"SECRET_KEY:",
+// 	process.env.AWS_SECRET_ACCESS_KEY ? "FOUND" : "MISSING",
+// );
+// console.log("REGION:", process.env.AWS_REGION);
 
 AWS.config.update({
 	accessKeyId: process.env.AWS_ACCESS_KEY_ID,

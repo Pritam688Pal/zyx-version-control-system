@@ -40,15 +40,17 @@ yargs(hideBin(process.argv))
 	.command("push", "Push commits to ZYXhub", {}, push)
 	.command("pull", "Pull commits from ZYXhub", {}, pull)
 	.command(
-		"revert",
+		"revert <commitID>",
 		"Revert to a specific commit",
 		(yargs) => {
-			yargs.positional("file", {
+			yargs.positional("commitID", {
 				describe: "Comit ID to revert back to",
 				type: "string",
 			});
 		},
-		revert,
+		(argv) => {
+			revert(argv.commitID);
+		},
 	)
 	.demandCommand(1, "You need at least one command")
 	.help().argv;
