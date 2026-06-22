@@ -1,6 +1,6 @@
 const fs = require("fs").promises;
 const path = require("path");
-const { s3, S3_BUCKET } = require("../config/aws_config.js");
+const { s3, S3_BUCKET } = require("../../config/aws_config.js");
 
 async function pull() {
 	const repoPath = path.resolve(process.cwd(), "./.ZYXgit");
