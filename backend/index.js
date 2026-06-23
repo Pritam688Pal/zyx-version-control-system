@@ -14,8 +14,7 @@ const { commitFiles } = require("./controllers/commands.conrollers/commit.js");
 const { push } = require("./controllers/commands.conrollers/push.js");
 const { pull } = require("./controllers/commands.conrollers/pull.js");
 const { revert } = require("./controllers/commands.conrollers/revert.js");
-const { log } = require("console");
-const { Socket } = require("dgram");
+const mainRouter = require("./routes/main.route.js");
 
 dotenv.config();
 
@@ -76,9 +75,7 @@ function startServer() {
 		.then(() => console.log("MongoDB connected!"))
 		.catch((err) => console.error("Unable to connect : ", err));
 	app.use(cors({ origin: "*" }));
-	app.get("/", (req, res) => {
-		res.json("Hello World!");
-	});
+	app.use("/", mainRouter);
 	let user;
 	const httpServer = http.createServer(app);
 	const io = new Server(httpServer, {
