@@ -7,6 +7,7 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const http = require("http");
 const { Server } = require("socket.io");
+var cookieParser = require("cookie-parser");
 
 const { initRepo } = require("./controllers/commands.conrollers/init.js");
 const { addFiles } = require("./controllers/commands.conrollers/add.js");
@@ -70,6 +71,7 @@ function startServer() {
 	const port = process.env.PORT;
 	const mongoUri = process.env.MONGO_ATLAS_DB_URI;
 	app.use(express.json());
+	app.use(cookieParser());
 	mongoose
 		.connect(mongoUri)
 		.then(() => console.log("MongoDB connected!"))
