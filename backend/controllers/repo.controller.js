@@ -75,16 +75,66 @@ const getRepoOfCrrentUser = async (req, res) => {
 	}
 };
 
-const updateRepositoryById = (req, res) => {
-	res.json("Repository updated!");
+const updateRepositoryById = async (req, res) => {
+	const { id } = req.params;
+	if (!id) return res.status(204).json("id required");
+	const { content, description } = req.body;
+	const userId = req.user._id;
+	try {
+		const repo = await Repo.findById(id);
+		// console.log(repo.owner);
+		// console.log(userId);
+		if (!repo.owner.equals(userId))
+			return res.status(401).json("Only owner can edit the repository");
+		if (!content) return res.status(204).json("content required");
+		repo.content.push(content);
+		if (description) {
+			repo.description = description;
+		}
+		repo.save();
+		res.status(202).json({ message: "Repository updated!" });
+	} catch (error) {
+		console.error("Error during updating fetching : ", error.message);
+		res.status(500).send("Server error");
+	}
 };
 
-const toggleVisibilityById = (req, res) => {
-	res.json("Visibility toggled!");
+const toggleVisibilityById = async (req, res) => {
+	const { id } = req.params;
+	if (!id) return res.status(204).json("id required");
+	const userId = req.user._id;
+	try {
+		const repo = await Repo.findById(id);
+		// console.log(repo.owner);
+		// console.log(userId);
+		if (!repo.owner.equals(userId))
+			return res
+				.status(401)
+				.json("Only owner can toggle visibility of the repository");
+		repo.visibility = !repo.visibility;
+		repo.save();
+		res.status(202).json({ message: "Repository visibility toggled!" });
+	} catch (error) {
+		console.error("Error during updating fetching : ", error.message);
+		res.status(500).send("Server error");
+	}
 };
 
-const deleteRepositoryById = (req, res) => {
-	res.json("Repository deleted!");
+const deleteRepositoryById = async (req, res) => {
+	const { id } = req.params;
+	if (!id) return res.status(204).json("id required");
+	const userId = req.user._id;
+	try {
+		const repo = await Repo.findById(id);
+		if (!repo.owner.equals(userId))
+			return res.status(401).json("Only owner can delete the repository");
+		await repo.deleteOne();
+		// console.log(repo);
+		res.status(202).json({ message: "Repository deleted!", repo });
+	} catch (error) {
+		console.error("Error during updating fetching : ", error.message);
+		res.status(500).send("Server error");
+	}
 };
 
 module.exports = {

@@ -7,15 +7,19 @@ repoRouter.post("/create", verifyJWT, repoController.createRepo);
 repoRouter.get("/allrepo", verifyJWT, repoController.getAllRepo);
 repoRouter.get("/:id", verifyJWT, repoController.getRepoById);
 repoRouter.put(
-	"/updateRepositoryById",
+	"/updateRepositoryById/:id",
 	verifyJWT,
 	repoController.updateRepositoryById,
 );
 repoRouter.patch(
-	"/toggleVisibility",
+	"/toggleVisibility/:id",
 	verifyJWT,
 	repoController.toggleVisibilityById,
 );
-repoRouter.delete("/delete", verifyJWT, repoController.deleteRepositoryById);
+repoRouter.delete(
+	"/delete/:id",
+	verifyJWT,
+	repoController.deleteRepositoryById,
+);
 
 module.exports = repoRouter;
