@@ -17,6 +17,7 @@ const repoSchema = new Schema({
 	],
 	visibility: {
 		type: Boolean,
+		default: true,
 	},
 	owner: {
 		type: Schema.Types.ObjectId,
@@ -25,6 +26,7 @@ const repoSchema = new Schema({
 	},
 	issues: [
 		{
+			default: [],
 			type: Schema.Types.ObjectId,
 			ref: "Issue",
 		},
@@ -33,4 +35,4 @@ const repoSchema = new Schema({
 
 const Repo = mongoose.model("Repo", repoSchema);
 
-export default Repo;
+module.exports = Repo;
