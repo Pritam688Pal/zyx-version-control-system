@@ -21,6 +21,6 @@ const issueSchema = new Schema({
 	},
 });
 
-const Issue = mongoose.model("Repo", issueSchema);
+const Issue = mongoose.model("Issue", issueSchema);
 
-export default Issue;
+module.exports = Issue;
