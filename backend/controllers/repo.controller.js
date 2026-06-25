@@ -27,16 +27,52 @@ const createRepo = (req, res) => {
 	}
 };
 
-const getAllRepo = (req, res) => {
-	res.json("All Repositories fetched!");
+const getAllRepo = async (req, res) => {
+	try {
+		const allrepo = await Repo.find({});
+		res.status(201).json({
+			message: "Repositories fetched!",
+			repos: allrepo.filter((e) => e.visibility),
+		});
+	} catch (error) {
+		console.error("Error during repository fetching : ", error.message);
+		res.status(500).send("Server error");
+	}
 };
 
-const getRepoById = (req, res) => {
-	res.json("Repositories details fetched!");
+const getRepoById = async (req, res) => {
+	const { id } = req.params;
+	try {
+		const repo = await Repo.findById(id).populate(
+			"owner",
+			"-password -repositories -starRepos -_id",
+		);
+		// .populate("issues");
+		res.status(201).json({
+			message: "Repository fetched!",
+			repos: repo,
+		});
+	} catch (error) {
+		console.error("Error during repository fetching : ", error.message);
+		res.status(500).send("Server error");
+	}
 };
 
-const getRepoOfCrrentUser = (req, res) => {
-	res.json("Repositories of loged in user fetched!");
+const getRepoOfCrrentUser = async (req, res) => {
+	const owner = req.user._id;
+	// console.log(owner);
+
+	try {
+		const repo = await Repo.find({ owner }).select("-owner");
+		// .populate("issues");
+		res.status(201).json({
+			message: "Repository fetched!",
+			repo: repo,
+		});
+	} catch (error) {
+		console.error("Error during repository fetching : ", error.message);
+		res.status(500).send("Server error");
+	}
 };
 
 const updateRepositoryById = (req, res) => {

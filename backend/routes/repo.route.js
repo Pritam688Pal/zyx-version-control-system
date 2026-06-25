@@ -5,7 +5,7 @@ const verifyJWT = require("../middlewares/auth.middleware.js");
 repoRouter.get("/", verifyJWT, repoController.getRepoOfCrrentUser);
 repoRouter.post("/create", verifyJWT, repoController.createRepo);
 repoRouter.get("/allrepo", verifyJWT, repoController.getAllRepo);
-repoRouter.get("/getbyId", verifyJWT, repoController.getRepoById);
+repoRouter.get("/:id", verifyJWT, repoController.getRepoById);
 repoRouter.put(
 	"/updateRepositoryById",
 	verifyJWT,
