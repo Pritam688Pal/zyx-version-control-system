@@ -2,15 +2,16 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./index.css";
 import App from "./App.jsx";
-import { cookiesProvider } from "react-cookie";
 import { AuthProvider } from "./authContext.jsx";
+import ProjectRoutes from "./route.jsx";
+import { BrowserRouter as Router } from "react-router-dom";
 
 createRoot(document.getElementById("root")).render(
 	<StrictMode>
 		<AuthProvider>
-			<cookiesProvider>
-				<App />
-			</cookiesProvider>
+			<Router>
+				<ProjectRoutes />
+			</Router>
 		</AuthProvider>
 	</StrictMode>,
 );

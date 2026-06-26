@@ -1,9 +1,7 @@
-import React from 'react';
+import React from "react";
 
 function DashBoard() {
-    return ( 
-        <H1>DashBoard</H1>
-     );
+	return <p>DashBoard</p>;
 }
 
 export default DashBoard;

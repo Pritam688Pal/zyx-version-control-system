@@ -20,7 +20,7 @@ const signUp = async (req, res) => {
 			.status(200)
 			.cookie("accessToken", accessToken)
 			.cookie("refreshToken", refreshToken)
-			.json("User registered succesfully");
+			.json({ user: newUser });
 	} catch (error) {
 		console.error("Error during signing up : ", errerror?.messageor);
 		res.status(500).json("Server error");
