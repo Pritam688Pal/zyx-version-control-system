@@ -11,30 +11,32 @@ function SignUp() {
 	const [password, setPassword] = useState("");
 	const [loading, setLoading] = useState(false);
 
-	const { setUser } = useAuth();
+	const { user, setUser } = useAuth();
 
 	const handleSignup = async (e) => {
 		e.preventDefault();
 
 		try {
 			setLoading(true);
-			const res = await axios.post("http://localhost:3000/user/signup", {
-				email: email,
-				password: password,
-				username: username,
-			});
+			const res = await axios.post(
+				"http://localhost:3000/user/signUp",
+				{ email, password, username },
+				{ withCredentials: true },
+			);
 
-			setUser(res.data);
-			console.log(res.data);
+			setUser(res.data.user);
+			console.log(res.data.user);
 
 			setLoading(false);
+			// console.log(user);
 
-			window.location.href = "/";
+			// window.location.href = "/";
 		} catch (err) {
 			console.error(err);
 			alert("Signup Failed!");
 			setLoading(false);
 		}
+		// console.log(user);
 	};
 
 	return (

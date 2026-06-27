@@ -18,11 +18,19 @@ const signUp = async (req, res) => {
 		const refreshToken = newUser.generateRefreshToken();
 		res
 			.status(200)
-			.cookie("accessToken", accessToken)
-			.cookie("refreshToken", refreshToken)
+			.cookie("accessToken", accessToken, {
+				httpOnly: true,
+				sameSite: "lax",
+				maxAge: 24 * 60 * 60 * 1000,
+			})
+			.cookie("refreshToken", refreshToken, {
+				httpOnly: true,
+				sameSite: "lax",
+				maxAge: 10 * 24 * 60 * 60 * 1000,
+			})
 			.json({ user: newUser });
 	} catch (error) {
-		console.error("Error during signing up : ", errerror?.messageor);
+		console.error("Error during signing up : ", error?.messageor);
 		res.status(500).json("Server error");
 	}
 };
@@ -39,9 +47,17 @@ const logIn = async (req, res) => {
 		const refreshToken = user.generateRefreshToken();
 		res
 			.status(200)
-			.cookie("accessToken", accessToken)
-			.cookie("refreshToken", refreshToken)
-			.json("User Logged In");
+			.cookie("accessToken", accessToken, {
+				httpOnly: true,
+				sameSite: "lax",
+				maxAge: 24 * 60 * 60 * 1000,
+			})
+			.cookie("refreshToken", refreshToken, {
+				httpOnly: true,
+				sameSite: "lax",
+				maxAge: 10 * 24 * 60 * 60 * 1000,
+			})
+			.json({ user });
 	} catch (error) {
 		console.error("Error during logging in : ", error?.message);
 		res.status(500).json("Server error");

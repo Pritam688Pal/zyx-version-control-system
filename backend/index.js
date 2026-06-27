@@ -70,20 +70,25 @@ function startServer() {
 	const app = express();
 	const port = process.env.PORT;
 	const mongoUri = process.env.MONGO_ATLAS_DB_URI;
-	app.use(express.json());
-	app.use(cookieParser());
 	mongoose
 		.connect(mongoUri)
 		.then(() => console.log("MongoDB connected!"))
 		.catch((err) => console.error("Unable to connect : ", err));
-	app.use(cors({ origin: "*" }));
+	app.use(
+		cors({
+			origin: "http://localhost:5173",
+			credentials: true,
+		}),
+	);
+	app.use(express.json());
+	app.use(cookieParser());
 	app.use("/", mainRouter);
 	let user;
 	const httpServer = http.createServer(app);
 	const io = new Server(httpServer, {
 		cors: {
 			origin: "*",
-			methods: ["GET", "POST"],
+			credentials: true,
 		},
 	});
 
