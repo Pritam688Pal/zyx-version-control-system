@@ -8,10 +8,10 @@ import { BrowserRouter as Router } from "react-router-dom";
 
 createRoot(document.getElementById("root")).render(
 	<StrictMode>
-		<AuthProvider>
-			<Router>
+		<Router>
+			<AuthProvider>
 				<ProjectRoutes />
-			</Router>
-		</AuthProvider>
+			</AuthProvider>
+		</Router>
 	</StrictMode>,
 );
