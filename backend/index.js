@@ -76,7 +76,7 @@ function startServer() {
 		.catch((err) => console.error("Unable to connect : ", err));
 	app.use(
 		cors({
-			origin: "http://localhost:5173",
+			origin: "*",
 			credentials: true,
 		}),
 	);
