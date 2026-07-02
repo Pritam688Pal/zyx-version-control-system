@@ -16,7 +16,7 @@ export const AuthProvider = ({ children }) => {
 			setLoading(true);
 			try {
 				const res = await axios.get(
-					`http://${import.meta.env.API_URL}:3000/user/userProfile`,
+					`http://${import.meta.env.VITE_API_URL}/user/userProfile`,
 					{
 						withCredentials: true,
 					},
@@ -26,14 +26,14 @@ export const AuthProvider = ({ children }) => {
 				if (err.response?.status === 401) {
 					try {
 						await axios.get(
-							`http://${import.meta.env.API_URL}:3000/user/refreshAccessToken`,
+							`http://${import.meta.env.VITE_API_URL}/user/refreshAccessToken`,
 							{
 								withCredentials: true,
 							},
 						);
 						// Token refreshed, retry
 						const res = await axios.get(
-							`http://${import.meta.env.API_URL}:3000/user/userProfile`,
+							`http://${import.meta.env.VITE_API_URL}/user/userProfile`,
 							{
 								withCredentials: true,
 							},

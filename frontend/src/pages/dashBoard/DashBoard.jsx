@@ -9,9 +9,10 @@ function Dashboard() {
 
 	useEffect(() => {
 		const fetchRepositories = async () => {
+			// console.log("host:", import.meta.env);
 			try {
 				const response = await fetch(
-					`http://${import.meta.env.API_URL}:3000/repo`,
+					`http://${import.meta.env.VITE_API_URL}/repo`,
 					{
 						credentials: "include",
 					},
@@ -27,7 +28,7 @@ function Dashboard() {
 		const fetchSuggestedRepositories = async () => {
 			try {
 				const response = await fetch(
-					`http://${import.meta.env.API_URL}:3000/repo/allrepo`,
+					`http://${import.meta.env.VITE_API_URL}/repo/allrepo`,
 					{
 						credentials: "include",
 					},

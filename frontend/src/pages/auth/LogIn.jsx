@@ -16,7 +16,7 @@ function SignIn() {
 		try {
 			setLoading(true);
 			const res = await axios.post(
-				`http://${import.meta.env.API_URL}:3000/user/logIn`,
+				`http://${import.meta.env.VITE_API_URL}/user/logIn`,
 				{
 					email,
 					password,
