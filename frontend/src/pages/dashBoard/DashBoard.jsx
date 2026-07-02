@@ -9,7 +9,7 @@ function Dashboard() {
 
 	useEffect(() => {
 		const fetchRepositories = async () => {
-			console.log("host:", import.meta.env);
+			// console.log("host:", import.meta.env);
 			try {
 				const response = await fetch(
 					`http://${import.meta.env.VITE_API_URL}/repo`,
