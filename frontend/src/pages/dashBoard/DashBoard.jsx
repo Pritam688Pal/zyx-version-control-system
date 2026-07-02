@@ -10,9 +10,12 @@ function Dashboard() {
 	useEffect(() => {
 		const fetchRepositories = async () => {
 			try {
-				const response = await fetch("http://localhost:3000/repo", {
-					credentials: "include",
-				});
+				const response = await fetch(
+					`http://${import.meta.env.API_URL}:3000/repo`,
+					{
+						credentials: "include",
+					},
+				);
 				if (!response.ok) throw new Error(`HTTP error: ${response.status}`);
 				const data = await response.json();
 				setRepositories(data.repo);
@@ -23,9 +26,12 @@ function Dashboard() {
 
 		const fetchSuggestedRepositories = async () => {
 			try {
-				const response = await fetch("http://localhost:3000/repo/allrepo", {
-					credentials: "include",
-				});
+				const response = await fetch(
+					`http://${import.meta.env.API_URL}:3000/repo/allrepo`,
+					{
+						credentials: "include",
+					},
+				);
 				if (!response.ok) throw new Error(`HTTP error: ${response.status}`);
 				const data = await response.json();
 				setSuggestedRepositories(data.repos);

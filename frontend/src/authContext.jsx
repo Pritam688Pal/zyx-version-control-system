@@ -15,19 +15,25 @@ export const AuthProvider = ({ children }) => {
 		const fetchUser = async () => {
 			setLoading(true);
 			try {
-				const res = await axios.get("http://localhost:3000/user/userProfile", {
-					withCredentials: true,
-				});
+				const res = await axios.get(
+					`http://${import.meta.env.API_URL}:3000/user/userProfile`,
+					{
+						withCredentials: true,
+					},
+				);
 				setUser(res.data);
 			} catch (err) {
 				if (err.response?.status === 401) {
 					try {
-						await axios.get("http://localhost:3000/user/refreshAccessToken", {
-							withCredentials: true,
-						});
+						await axios.get(
+							`http://${import.meta.env.API_URL}:3000/user/refreshAccessToken`,
+							{
+								withCredentials: true,
+							},
+						);
 						// Token refreshed, retry
 						const res = await axios.get(
-							"http://localhost:3000/user/userProfile",
+							`http://${import.meta.env.API_URL}:3000/user/userProfile`,
 							{
 								withCredentials: true,
 							},
