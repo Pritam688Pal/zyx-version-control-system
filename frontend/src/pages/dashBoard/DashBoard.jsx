@@ -12,7 +12,7 @@ function Dashboard() {
 			// console.log("host:", import.meta.env);
 			try {
 				const response = await fetch(
-					`http://${import.meta.env.VITE_API_URL}/repo`,
+					`https://${import.meta.env.VITE_API_URL}/repo`,
 					{
 						credentials: "include",
 					},
@@ -28,7 +28,7 @@ function Dashboard() {
 		const fetchSuggestedRepositories = async () => {
 			try {
 				const response = await fetch(
-					`http://${import.meta.env.VITE_API_URL}/repo/allrepo`,
+					`https://${import.meta.env.VITE_API_URL}/repo/allrepo`,
 					{
 						credentials: "include",
 					},

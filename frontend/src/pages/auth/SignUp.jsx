@@ -19,7 +19,7 @@ function SignUp() {
 		try {
 			setLoading(true);
 			const res = await axios.post(
-				`http://${import.meta.env.VITE_API_URL}/user/signUp`,
+				`https://${import.meta.env.VITE_API_URL}/user/signUp`,
 				{ email, password, username },
 				{ withCredentials: true },
 			);
