@@ -11,12 +11,9 @@ function Dashboard() {
 		const fetchRepositories = async () => {
 			// console.log("host:", import.meta.env);
 			try {
-				const response = await fetch(
-					`https://${import.meta.env.VITE_API_URL}/repo`,
-					{
-						credentials: "include",
-					},
-				);
+				const response = await fetch(`${import.meta.env.VITE_API_URL}/repo`, {
+					credentials: "include",
+				});
 				if (!response.ok) throw new Error(`HTTP error: ${response.status}`);
 				const data = await response.json();
 				setRepositories(data.repo);
@@ -28,7 +25,7 @@ function Dashboard() {
 		const fetchSuggestedRepositories = async () => {
 			try {
 				const response = await fetch(
-					`https://${import.meta.env.VITE_API_URL}/repo/allrepo`,
+					`${import.meta.env.VITE_API_URL}/repo/allrepo`,
 					{
 						credentials: "include",
 					},
