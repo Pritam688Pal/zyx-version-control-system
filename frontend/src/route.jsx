@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useRoutes } from "react-router-dom";
 
 // Pages List
@@ -7,13 +7,8 @@ import Profile from "./pages/user/Profile";
 import Login from "./pages/auth/LogIn";
 import Signup from "./pages/auth/SignUp";
 
-// Auth Context
-import { useAuth } from "./authContext";
-
 const ProjectRoutes = () => {
-	const { user, setUser } = useAuth();
-
-	let element = useRoutes([
+	return useRoutes([
 		{
 			path: "/",
 			element: <Dashboard />,
@@ -31,8 +26,6 @@ const ProjectRoutes = () => {
 			element: <Profile />,
 		},
 	]);
-
-	return element;
 };
 
 export default ProjectRoutes;
