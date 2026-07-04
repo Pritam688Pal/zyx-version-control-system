@@ -76,8 +76,10 @@ function startServer() {
 		.catch((err) => console.error("Unable to connect : ", err));
 	app.use(
 		cors({
-			origin: "*",
+			origin: "https://zyx-version-control-system.onrender.com",
 			credentials: true,
+			methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
+			allowedHeaders: ["Content-Type", "Authorization"],
 		}),
 	);
 	app.use(express.json());
