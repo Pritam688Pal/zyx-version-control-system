@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import React, { use, useEffect, useState } from "react";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { useAuth } from "../../authContext";
 import logo from "../../assets/logo.png";
 
-function AuthPage({ initialMode = "login" }) {
-	const [mode, setMode] = useState(initialMode);
+function AuthPage() {
+	const [mode, setMode] = useState(useParams().type);
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [username, setUsername] = useState("");
@@ -27,9 +27,7 @@ function AuthPage({ initialMode = "login" }) {
 			setLoading(true);
 			const endpoint = mode === "login" ? "/user/logIn" : "/user/signUp";
 			const payload =
-				mode === "login"
-					? { email, password }
-					: { email, password, username };
+				mode === "login" ? { email, password } : { email, password, username };
 			const res = await axios.post(
 				`${import.meta.env.VITE_API_URL}${endpoint}`,
 				payload,
