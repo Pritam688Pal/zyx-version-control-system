@@ -20,12 +20,14 @@ const signUp = async (req, res) => {
 			.status(200)
 			.cookie("accessToken", accessToken, {
 				httpOnly: true,
-				sameSite: "lax",
+				secure: true,
+				sameSite: "none",
 				maxAge: 24 * 60 * 60 * 1000,
 			})
 			.cookie("refreshToken", refreshToken, {
 				httpOnly: true,
-				sameSite: "lax",
+				secure: true,
+				sameSite: "none",
 				maxAge: 10 * 24 * 60 * 60 * 1000,
 			})
 			.json({ user: newUser });
@@ -49,12 +51,14 @@ const logIn = async (req, res) => {
 			.status(200)
 			.cookie("accessToken", accessToken, {
 				httpOnly: true,
-				sameSite: "lax",
+				secure: true,
+				sameSite: "none",
 				maxAge: 24 * 60 * 60 * 1000,
 			})
 			.cookie("refreshToken", refreshToken, {
 				httpOnly: true,
-				sameSite: "lax",
+				secure: true,
+				sameSite: "none",
 				maxAge: 10 * 24 * 60 * 60 * 1000,
 			})
 			.json({ user });
