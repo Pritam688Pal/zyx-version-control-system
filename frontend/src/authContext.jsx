@@ -44,7 +44,7 @@ export const AuthProvider = ({ children }) => {
 							location.pathname !== "/auth/login" &&
 							location.pathname !== "/auth/signup"
 						) {
-							navigate("/auth/login");
+							navigate("/auth/signup");
 						}
 					}
 				} else {
