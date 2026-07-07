@@ -40,12 +40,12 @@ export const AuthProvider = ({ children }) => {
 						);
 						setUser(res.data);
 					} catch {
-						if (
-							location.pathname !== "/auth/login" &&
-							location.pathname !== "/auth/signup"
-						) {
-							navigate("/auth/login");
-						}
+						// if (
+						// 	location.pathname !== "/auth/login" &&
+						// 	location.pathname !== "/auth/signup"
+						// ) {
+						// 	navigate("/auth/login");
+						// }
 					}
 				} else {
 					setUser(null);
