@@ -17,6 +17,7 @@ function AuthPage() {
 
 	useEffect(() => {
 		setMode(useParams().type);
+		console.log("Mode set to:", useParams().type);
 	}, [location.pathname]);
 
 	const handleSubmit = async (e) => {
