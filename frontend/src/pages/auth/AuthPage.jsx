@@ -16,7 +16,7 @@ function AuthPage() {
 	const location = useLocation();
 
 	useEffect(() => {
-		setMode(location.pathname === "/signup" ? "signup" : "login");
+		setMode(useParams().type);
 	}, [location.pathname]);
 
 	const handleSubmit = async (e) => {
