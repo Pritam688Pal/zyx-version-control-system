@@ -6,6 +6,7 @@ import Dashboard from "./pages/dashBoard/DashBoard";
 import Profile from "./pages/user/Profile";
 import Login from "./pages/auth/LogIn";
 import Signup from "./pages/auth/SignUp";
+import AuthPage from "./pages/auth/AuthPage";
 
 const ProjectRoutes = () => {
 	return useRoutes([
@@ -25,6 +26,14 @@ const ProjectRoutes = () => {
 			path: "/profile/:id",
 			element: <Profile />,
 		},
+		{
+			path: "/auth",
+			element: <AuthPage />,
+		},
+		{
+			path: "*",
+			element: <h1>404 Not Found</h1>,
+		}
 	]);
 };
 
